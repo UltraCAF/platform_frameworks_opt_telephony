@@ -949,8 +949,7 @@ public class ImsPhone extends ImsPhoneBase {
         try {
             ImsUtInterface ut = mCT.getUtInterface();
             // password is not required with Ut interface
-            ut.updateCallBarring(getCBTypeFromFacility(facility), action, serviceClass,
-                    resp, null);
+            ut.updateCallBarring(getCBTypeFromFacility(facility), action, resp, null);
         } catch (ImsException e) {
             sendErrorResponse(onComplete, e);
         }
