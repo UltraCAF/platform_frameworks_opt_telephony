@@ -595,11 +595,6 @@ public class SmsUsageMonitor {
         callback.onAuthorizationResult(true); // Default implementation always authorizes
     }
 
-    public boolean isSmsAuthorizationEnabled() {
-        return mContext.getResources().getBoolean(
-                com.android.internal.R.bool.config_sms_authorization_enabled);
-    }
-
     private static void checkCallerIsSystemOrPhoneOrSameApp(String pkg) {
         int uid = Binder.getCallingUid();
         int appId = UserHandle.getAppId(uid);
