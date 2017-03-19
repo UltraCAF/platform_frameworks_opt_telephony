@@ -1040,24 +1040,7 @@ public abstract class SMSDispatcher extends Handler {
                 sendMessage(obtainMessage(EVENT_SEND_LIMIT_REACHED_CONFIRMATION, tracker));
                 return;
             }
-
-            if (mUsageMonitor.isSmsAuthorizationEnabled()) {
-                final SmsAuthorizationCallback callback = new SmsAuthorizationCallback() {
-                    @Override
-                    public void onAuthorizationResult(final boolean accepted) {
-                        if (accepted) {
-                            sendSms(tracker);
-                        } else {
-                            tracker.onFailed(mContext, RESULT_ERROR_GENERIC_FAILURE,
-                                    SmsUsageMonitor.ERROR_CODE_BLOCKED);
-                        }
-                    }
-                };
-                mUsageMonitor.authorizeOutgoingSms(tracker.mAppInfo, tracker.mDestAddress,
-                        tracker.mFullMessageText, callback, this);
-            } else {
-                sendSms(tracker);
-            }
+            sendSms(tracker);
         }
 
         if (PhoneNumberUtils.isLocalEmergencyNumber(mContext, tracker.mDestAddress)) {
