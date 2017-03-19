@@ -919,7 +919,7 @@ public class ImsPhone extends ImsPhoneBase {
 
         try {
             ImsUtInterface ut = mCT.getUtInterface();
-            ut.queryCallBarring(getCBTypeFromFacility(facility), serviceClass, resp);
+            ut.queryCallBarring(getCBTypeFromFacility(facility), resp);
         } catch (ImsException e) {
             sendErrorResponse(onComplete, e);
         }
