@@ -87,8 +87,6 @@ import com.android.internal.telephony.uicc.UiccController;
 import com.android.internal.telephony.uicc.IsimRecords;
 import com.android.internal.telephony.uicc.IsimUiccRecords;
 
-import org.codeaurora.internal.IExtTelephony;
-
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -3418,16 +3416,7 @@ public class GsmCdmaPhone extends Phone {
     }
 
     private boolean isEmergencyNumber(String address) {
-        IExtTelephony mIExtTelephony =
-            IExtTelephony.Stub.asInterface(ServiceManager.getService("extphone"));
         boolean result = false;
-        try {
-            result = mIExtTelephony.isEmergencyNumber(address);
-        } catch (RemoteException ex) {
-            loge("RemoteException" + ex);
-        } catch (NullPointerException ex) {
-            loge("NullPointerException" + ex);
-        }
         return result;
     }
 
